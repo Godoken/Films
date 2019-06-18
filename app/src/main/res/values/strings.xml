@@ -3,4 +3,6 @@
     <string name="on_back_pressed">Вы действительно хотите выйти?</string>
     <string name="yes">Да</string>
     <string name="no">Нет</string>
+    <string name="error_film_list_clear">Список пуст</string>
+    <string name="error_film_list_server">Ошибка сервера</string>
 </resources>

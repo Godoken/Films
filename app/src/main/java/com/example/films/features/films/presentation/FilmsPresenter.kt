@@ -1,5 +1,7 @@
 package com.example.films.features.films.presentation
 
+import com.example.films.R
+import com.example.films.app.App
 import com.example.films.features.films.domain.Interactor
 import com.example.films.features.films.domain.model.Film
 import io.reactivex.Observer
@@ -34,13 +36,13 @@ class FilmsPresenter(private val interactor: Interactor) {
                 if (films.size != 0) {
                     view!!.setFilmsToAdapter(films)
                 } else {
-                    //view!!.showError(App.getContext().getString(R.string.error_event_list_clear))
+                    view!!.showError(App.getContext().getString(R.string.error_film_list_clear))
                 }
             }
 
             override fun onError(e: Throwable) {
                 view!!.hideProgress()
-                //view!!.showError(App.getContext().getString(R.string.error_events_list_server))
+                view!!.showError(App.getContext().getString(R.string.error_film_list_server))
             }
 
             override fun onComplete() {

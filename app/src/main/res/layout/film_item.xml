@@ -7,17 +7,36 @@
               android:focusable="auto"
               android:clickable="true"
               android:focusableInTouchMode="false"
-              android:orientation="vertical"
-              android:outlineSpotShadowColor="@android:color/background_light">
+              android:outlineSpotShadowColor="@android:color/background_light" android:orientation="vertical">
 
-    <TextView
-            android:id="@+id/film_item_name"
-            style="@style/Base.TextAppearance.AppCompat.Body2"
+    <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:elevation="4dp"
-            android:textColor="@android:color/black"
-            android:textSize="18sp" />
+            android:layout_height="match_parent">
+
+        <TextView
+                android:id="@+id/film_item_name"
+                style="@style/Base.TextAppearance.AppCompat.Body2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="4dp"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"/>
+
+        <Space
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_weight="1"/>
+
+        <TextView
+                android:id="@+id/film_item_rating"
+                style="@style/Base.TextAppearance.AppCompat.Body1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="4dp"
+                android:textColor="@android:color/holo_red_dark"
+                android:textSize="14sp"/>
+
+    </LinearLayout>
 
     <TextView
             android:id="@+id/film_item_text"
@@ -26,6 +45,6 @@
             android:layout_height="60dp"
             android:elevation="4dp"
             android:textColor="@android:color/holo_red_dark"
-            android:textSize="14sp" />
+            android:textSize="14sp"/>
 
 </LinearLayout>

@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.films.R
 import com.example.films.features.films.domain.model.Film
 import kotlinx.android.synthetic.main.activity_main.*
@@ -28,6 +29,8 @@ class FilmsActivity : AppCompatActivity(), FilmsView {
                 filmsPresenter!!.onFilmSelected(film)
             }
         })
+        films_recycler_view.adapter = filmsAdapter
+        films_recycler_view.layoutManager = LinearLayoutManager(this)
     }
 
     override fun onStart() {
@@ -72,6 +75,6 @@ class FilmsActivity : AppCompatActivity(), FilmsView {
     }
 
     override fun setFilmsToAdapter(films: List<Film>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        filmsAdapter!!.setFilms(films)
     }
 }

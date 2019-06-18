@@ -1,15 +1,16 @@
 package com.example.films.features.films.presentation
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.films.R
+import com.example.films.app.App
 import com.example.films.features.films.domain.model.Film
-
-import java.util.ArrayList
+import java.util.*
 
 class FilmsAdapter(context: Context, private val selectFilmListener: SelectFilmListener) :
     RecyclerView.Adapter<FilmsAdapter.FilmsHolder>() {
@@ -45,17 +46,26 @@ class FilmsAdapter(context: Context, private val selectFilmListener: SelectFilmL
 
         private val filmNameView: TextView
         private val filmTextView: TextView
+        private val filmRatingView: TextView
 
         init {
             filmNameView = itemView.findViewById(R.id.film_item_name)
             filmTextView = itemView.findViewById(R.id.film_item_text)
+            filmRatingView = itemView.findViewById(R.id.film_item_rating)
         }
 
         fun bind(film: Film) {
-            filmNameView.text = film.translatedTitle
-            filmTextView.text = film.description
+            filmNameView.text = film.localized_name
+            filmTextView.text = film.name
 
-            itemView.setOnClickListener { v -> selectFilmListener.onFilmSelect(film) }
+            if (film.id != 0){
+                filmRatingView.text = film.rating.toString()
+                itemView.background = App.getContext().getDrawable(R.drawable.background_on_click)
+                itemView.setOnClickListener { v -> selectFilmListener.onFilmSelect(film) }
+            } else {
+                itemView.setBackgroundColor(Color.LTGRAY)
+                filmRatingView.text = ""
+            }
         }
     }
 
