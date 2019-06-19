@@ -1,4 +1,4 @@
-package com.example.films.features.films.presentation
+package com.example.films.features.films.presentation.information
 
 import com.example.films.R
 import com.example.films.app.App
@@ -8,11 +8,11 @@ import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 
-class FilmsPresenter(private val interactor: Interactor) {
+class InformationPresenter(private val interactor: Interactor, private val filmId: Int) {
 
-    protected var view: FilmsView? = null
+    protected var view: InformationView? = null
 
-    fun attachView(view: FilmsView) {
+    fun attachView(view: InformationView) {
         this.view = view
         onViewReady()
     }
@@ -22,22 +22,18 @@ class FilmsPresenter(private val interactor: Interactor) {
     }
 
     protected fun onViewReady() {
-        view!!.loadFilms()
+        view!!.loadInformation()
     }
 
-    fun loadFilms() {
-        val listObservable = interactor.loadFilms().toObservable()
-        val listObserver = object : Observer<List<Film>> {
+    fun loadInformation() {
+        val listObservable = interactor.loadFilmInformation(filmId).toObservable()
+        val listObserver = object : Observer<Film> {
             override fun onSubscribe(d: Disposable) {
                 view!!.showProgress()
             }
 
-            override fun onNext(films: List<Film>) {
-                if (films.size != 0) {
-                    view!!.setFilmsToAdapter(films)
-                } else {
-                    view!!.showError(App.getContext().getString(R.string.error_film_list_clear))
-                }
+            override fun onNext(film: Film) {
+                view!!.initInformation(film)
             }
 
             override fun onError(e: Throwable) {
@@ -52,18 +48,5 @@ class FilmsPresenter(private val interactor: Interactor) {
         listObservable
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(listObserver)
-    }
-
-    fun onFilmSelected(films: Film) {
-        view!!.showProgress()
-        //view!!.loadInformation(productsInteractor.getInformation(product))
-        view!!.hideProgress()
-
-    }
-
-    fun onBackPressed() {
-        view!!.showProgress()
-        view!!.openQuitDialog()
-        view!!.hideProgress()
     }
 }

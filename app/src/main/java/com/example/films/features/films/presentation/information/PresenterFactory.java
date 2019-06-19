@@ -1,5 +1,4 @@
-package com.example.films.features.films.presentation;
-
+package com.example.films.features.films.presentation.information;
 
 import com.example.films.features.films.data.DataSource;
 import com.example.films.features.films.data.Loader;
@@ -12,10 +11,9 @@ import com.example.films.features.films.domain.Interactor;
 import com.example.films.features.films.domain.InteractorImpl;
 import com.example.films.features.films.domain.Repository;
 
-
 public class PresenterFactory {
 
-    static FilmsPresenter createPresenter(){
+    static InformationPresenter createPresenter(int filmId){
 
         final Api api = Client.getInstance().getApi();
         final DataSource dataSource = new DataSourceImpl();
@@ -23,6 +21,6 @@ public class PresenterFactory {
         final Repository repository = new RepositoryImpl(dataSource, loader);
         final Interactor interactor = new InteractorImpl(repository);
 
-        return new FilmsPresenter(interactor);
+        return new InformationPresenter(interactor, filmId);
     }
 }

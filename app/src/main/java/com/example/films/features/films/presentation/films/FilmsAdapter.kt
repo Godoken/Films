@@ -1,4 +1,4 @@
-package com.example.films.features.films.presentation
+package com.example.films.features.films.presentation.films
 
 import android.content.Context
 import android.graphics.Color
@@ -59,11 +59,13 @@ class FilmsAdapter(context: Context, private val selectFilmListener: SelectFilmL
             filmTextView.text = film.name
 
             if (film.id != 0){
-                filmRatingView.text = film.rating.toString()
+                film.rating?.let { filmRatingView.text = film.rating.toString() }
                 itemView.background = App.getContext().getDrawable(R.drawable.background_on_click)
+                itemView.isClickable = true
                 itemView.setOnClickListener { v -> selectFilmListener.onFilmSelect(film) }
             } else {
                 itemView.setBackgroundColor(Color.LTGRAY)
+                itemView.isClickable = false
                 filmRatingView.text = ""
             }
         }

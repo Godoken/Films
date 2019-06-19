@@ -5,6 +5,11 @@ import com.example.films.features.films.domain.model.Film
 import io.reactivex.Single
 
 class RepositoryImpl(private val dataSource: DataSource, private val loader: Loader) : Repository {
+
+    override fun loadFilmInformation(filmId: Int): Single<Film> {
+        return dataSource.loadFilmInformation(filmId)
+    }
+
     override fun loadFilms(): Single<List<Film>> {
         return loadFilmsFromNet()
             .onErrorResumeNext {loadFilmsFromDatabase() }

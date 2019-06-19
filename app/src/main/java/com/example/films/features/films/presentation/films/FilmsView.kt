@@ -1,4 +1,4 @@
-package com.example.films.features.films.presentation
+package com.example.films.features.films.presentation.films
 
 import com.example.films.features.films.domain.model.Film
 
@@ -10,4 +10,5 @@ interface FilmsView {
     fun setFilmsToAdapter(films: List<Film>)
     fun onBackPressed()
     fun openQuitDialog()
+    fun loadInformation(id: Int)
 }

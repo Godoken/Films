@@ -16,6 +16,6 @@ interface FilmDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAllFilms(filmList: List<Film>)
 
-    /*@Query("SELECT * FROM guest WHERE filmId = :filmId")
-    fun getAllInformationByFilmId(filmId: Int): Single<List<Film>>*/
+    @Query("SELECT * FROM film WHERE id = :filmId")
+    fun getAllInformationByFilmId(filmId: Int): Single<Film>
 }

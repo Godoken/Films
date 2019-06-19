@@ -5,4 +5,5 @@ import io.reactivex.Single
 
 interface Interactor {
     fun loadFilms(): Single<List<Film>>
+    fun loadFilmInformation(filmId: Int): Single<Film>
 }

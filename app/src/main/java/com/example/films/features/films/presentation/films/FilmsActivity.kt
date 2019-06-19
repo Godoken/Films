@@ -1,5 +1,6 @@
-package com.example.films.features.films.presentation
+package com.example.films.features.films.presentation.films
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -8,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.films.R
 import com.example.films.features.films.domain.model.Film
+import com.example.films.features.films.presentation.information.InformationActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class FilmsActivity : AppCompatActivity(), FilmsView {
@@ -24,11 +26,13 @@ class FilmsActivity : AppCompatActivity(), FilmsView {
     }
 
     private fun initView() {
-        filmsAdapter = FilmsAdapter(this@FilmsActivity, object : FilmsAdapter.SelectFilmListener {
-            override fun onFilmSelect(film: Film) {
-                filmsPresenter!!.onFilmSelected(film)
-            }
-        })
+        filmsAdapter = FilmsAdapter(
+            this@FilmsActivity,
+            object : FilmsAdapter.SelectFilmListener {
+                override fun onFilmSelect(film: Film) {
+                    filmsPresenter!!.onFilmSelected(film)
+                }
+            })
         films_recycler_view.adapter = filmsAdapter
         films_recycler_view.layoutManager = LinearLayoutManager(this)
     }
@@ -76,5 +80,11 @@ class FilmsActivity : AppCompatActivity(), FilmsView {
 
     override fun setFilmsToAdapter(films: List<Film>) {
         filmsAdapter!!.setFilms(films)
+    }
+
+    override fun loadInformation(id: Int) {
+        val intent = Intent(this, InformationActivity::class.java)
+        intent.putExtra("id", id)
+        startActivity(intent)
     }
 }

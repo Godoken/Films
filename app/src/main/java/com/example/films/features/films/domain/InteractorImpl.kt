@@ -4,11 +4,16 @@ import com.example.films.features.films.domain.model.Film
 import io.reactivex.Single
 
 class InteractorImpl(private val repository: Repository) : Interactor {
+
     override fun loadFilms(): Single<List<Film>> {
         return repository.loadFilms()
             .map { list: List<Film> -> sortFilmsByRating(list)  }
             .map { list: List<Film> -> sortFilmsByYear(list) }
             .map { list: List<Film> -> formatFilmsByYear(list)}
+    }
+
+    override fun loadFilmInformation(filmId: Int): Single<Film> {
+        return repository.loadFilmInformation(filmId)
     }
 
     private fun sortFilmsByYear(list: List<Film>): List<Film> {
