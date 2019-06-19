@@ -10,7 +10,7 @@ import io.reactivex.disposables.Disposable
 
 class InformationPresenter(private val interactor: Interactor, private val filmId: Int) {
 
-    protected var view: InformationView? = null
+    private var view: InformationView? = null
 
     fun attachView(view: InformationView) {
         this.view = view
@@ -21,7 +21,7 @@ class InformationPresenter(private val interactor: Interactor, private val filmI
         this.view = null
     }
 
-    protected fun onViewReady() {
+    private fun onViewReady() {
         view!!.loadInformation()
     }
 

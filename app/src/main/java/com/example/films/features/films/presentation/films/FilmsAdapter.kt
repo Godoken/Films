@@ -62,7 +62,7 @@ class FilmsAdapter(context: Context, private val selectFilmListener: SelectFilmL
                 film.rating?.let { filmRatingView.text = film.rating.toString() }
                 itemView.background = App.getContext().getDrawable(R.drawable.background_on_click)
                 itemView.isClickable = true
-                itemView.setOnClickListener { v -> selectFilmListener.onFilmSelect(film) }
+                itemView.setOnClickListener { selectFilmListener.onFilmSelect(film) }
             } else {
                 itemView.setBackgroundColor(Color.LTGRAY)
                 itemView.isClickable = false

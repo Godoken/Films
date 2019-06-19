@@ -5,4 +5,5 @@
     <string name="no">Нет</string>
     <string name="error_film_list_clear">Список пуст</string>
     <string name="error_film_list_server">Ошибка сервера</string>
+    <string name="text_picture">Картинка</string>
 </resources>

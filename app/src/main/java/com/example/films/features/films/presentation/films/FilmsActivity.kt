@@ -69,8 +69,8 @@ class FilmsActivity : AppCompatActivity(), FilmsView {
     override fun openQuitDialog() {
         val quitDialog = AlertDialog.Builder(this)
         quitDialog.setTitle(R.string.on_back_pressed)
-        quitDialog.setPositiveButton(R.string.yes) { dialog, which -> finish() }
-        quitDialog.setNegativeButton(R.string.no) { dialog, which -> }
+        quitDialog.setPositiveButton(R.string.yes) { _, _ -> finish() }
+        quitDialog.setNegativeButton(R.string.no) { _, _ -> }
         quitDialog.show()
     }
 

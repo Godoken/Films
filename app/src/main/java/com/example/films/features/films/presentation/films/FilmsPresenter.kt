@@ -10,7 +10,7 @@ import io.reactivex.disposables.Disposable
 
 class FilmsPresenter(private val interactor: Interactor) {
 
-    protected var view: FilmsView? = null
+    private var view: FilmsView? = null
 
     fun attachView(view: FilmsView) {
         this.view = view
@@ -21,7 +21,7 @@ class FilmsPresenter(private val interactor: Interactor) {
         this.view = null
     }
 
-    protected fun onViewReady() {
+    private fun onViewReady() {
         view!!.loadFilms()
     }
 
@@ -33,7 +33,7 @@ class FilmsPresenter(private val interactor: Interactor) {
             }
 
             override fun onNext(films: List<Film>) {
-                if (films.size != 0) {
+                if (films.isNotEmpty()) {
                     view!!.setFilmsToAdapter(films)
                 } else {
                     view!!.showError(App.getContext().getString(R.string.error_film_list_clear))

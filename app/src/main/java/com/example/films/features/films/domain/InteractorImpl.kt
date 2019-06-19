@@ -25,17 +25,17 @@ class InteractorImpl(private val repository: Repository) : Interactor {
     }
 
     private fun formatFilmsByYear(list: List<Film>): List<Film> {
-        val formatedList: MutableList<Film> = ArrayList<Film>()
-        var yearSeparator: Int = 0
+        val formedList: MutableList<Film> = ArrayList()
+        var yearSeparator = 0
 
         list.forEach { film: Film -> if (film.year != yearSeparator) {
-            formatedList.add(Film(0, film.year.toString(), "", null, null, null, null ))
-            formatedList.add(film)
+            formedList.add(Film(0, film.year.toString(), "", null, null, null, null ))
+            formedList.add(film)
             yearSeparator = film.year!!
         } else {
-            formatedList.add(film)
+            formedList.add(film)
         }}
 
-        return formatedList
+        return formedList
     }
 }

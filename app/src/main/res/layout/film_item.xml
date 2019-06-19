@@ -3,12 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/background_on_click"
-    android:clickable="true"
     android:elevation="8dp"
     android:focusable="auto"
     android:focusableInTouchMode="false"
-    android:orientation="vertical"
-    android:outlineSpotShadowColor="@android:color/background_light">
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
